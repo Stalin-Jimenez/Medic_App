@@ -2,6 +2,7 @@ package com.example.medic_app.Controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -49,16 +50,16 @@ public class Register extends AppCompatActivity {
 
     public void Registrar(View view) {
 
-        String nombres = Nombres.getText().toString().trim();
-        String apellidos = Apellidos.getText().toString().trim();
-        String usuario = Usuario.getText().toString().trim();
-        String ncedula = Ncedula.getText().toString().trim();
-        String correo = Correo.getText().toString().trim();
-        String clave = Clave.getText().toString().trim();
-
-        CrearUsuario(nombres, apellidos, usuario, ncedula, correo, clave);
-
         if (view.getId() == R.id.Btn_registrar) {
+
+            String nombres = Nombres.getText().toString().trim();
+            String apellidos = Apellidos.getText().toString().trim();
+            String usuario = Usuario.getText().toString().trim();
+            String ncedula = Ncedula.getText().toString().trim();
+            String correo = Correo.getText().toString().trim();
+            String clave = Clave.getText().toString().trim();
+
+            CrearUsuario(nombres, apellidos, usuario, ncedula, correo, clave);
 
 
         }
@@ -76,12 +77,16 @@ public class Register extends AppCompatActivity {
                     public void onResponse(String response) {
 
                         Toast.makeText(Register.this, "Usuario Registrado Correctamente", Toast.LENGTH_SHORT).show();
+                        Intent login = new Intent(Register.this, Login.class);
+                        startActivity(login);
 
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+
+                        Toast.makeText(Register.this, "No se Pudo Registrar el Usuario", Toast.LENGTH_SHORT).show();
 
                     }
                 }
