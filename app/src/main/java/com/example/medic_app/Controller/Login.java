@@ -19,8 +19,8 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        this.correo=findViewById(R.id.TxtCorreo_L);
-        this.clave=findViewById(R.id.TxtClave_L);
+        this.correo = findViewById(R.id.TxtCorreo_L);
+        this.clave = findViewById(R.id.TxtClave_L);
     }
 
     public void Iniciar(View view) {
@@ -28,7 +28,7 @@ public class Login extends AppCompatActivity {
     }
 
     public void Resgistrar(View view) {
-        Intent registrar= new Intent(Login.this, Register.class);
+        Intent registrar = new Intent(Login.this, Register.class);
         startActivity(registrar);
     }
 }
