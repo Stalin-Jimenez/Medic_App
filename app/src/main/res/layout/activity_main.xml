@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="187dp"
         android:layout_marginTop="200dp"
-        android:src="@drawable/historial_medico"
+        android:src="@drawable/medicamento"
         android:layout_marginBottom="15dp"/>
 
     <TextView
@@ -31,5 +31,5 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="239dp"
         android:progressBackgroundTint="@color/gris"
-        android:progressTint="@color/teal_200"/>
+        android:progressTint="@color/acento"/>
 </RelativeLayout>

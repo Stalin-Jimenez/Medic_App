@@ -45,7 +45,7 @@ public class Login extends AppCompatActivity {
         if (view.getId() == R.id.BtnIniciar_L) {
 
 
-            String URL = "http://10.99.9.8/prueba/Login.php?correo=" + correo.getText().toString() + "&clave=" + clave.getText().toString();
+            String URL = "http://192.168.1.106/prueba/Login.php?correo=" + correo.getText().toString() + "&clave=" + clave.getText().toString();
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                     Request.Method.GET,
                     URL,
@@ -55,7 +55,8 @@ public class Login extends AppCompatActivity {
                         public void onResponse(JSONObject response) {
 
                             try {
-                                if (response.getString("correo").equals(correo.getText().toString()) && response.getString("clave").equals(clave.getText().toString())) {
+                                if (response.getString("correo").equals(correo.getText().toString()) &&
+                                        response.getString("clave").equals(clave.getText().toString())) {
 
                                     Toast.makeText(Login.this, "Logueo Exitoso", Toast.LENGTH_SHORT).show();
                                     Intent principal = new Intent(Login.this, Principal.class);

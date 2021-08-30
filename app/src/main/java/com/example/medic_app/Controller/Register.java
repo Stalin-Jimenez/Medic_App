@@ -30,7 +30,7 @@ public class Register extends AppCompatActivity {
     private TextInputEditText Clave;
 
     RequestQueue requestQueue;
-    private static final String URL = "http://10.99.9.8/prueba/Register.php";
+    private static final String URL = "http://192.168.1.106/prueba/Register.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
