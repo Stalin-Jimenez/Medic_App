@@ -8,9 +8,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gris">#757575</color>
-    <color name="acento">#039be5</color>
-    <color name="acento_oscuro">#01579b</color>
+    <color name="acento">#00E5FF</color>
+    <color name="acento_oscuro">#00B8D4</color>
     <color name="gris_fondo">#2E2E2E</color>
     <color name="blanco_fondo">#FBFBFB</color>
+    <color name="boton_oscuro">#00838F</color>
+    <color name="ListView">#424242</color>
 
 </resources>

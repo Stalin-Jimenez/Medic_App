@@ -1,14 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Controller.CitasM">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="citas" />
+        android:orientation="vertical">
 
-</FrameLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="casual"
+                    android:gravity="center"
+                    android:text="Citas Medicas"
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:layout_width="170dp"
+                    android:layout_height="19dp"
+                    android:text="      Citas Asistidas:" />
+
+                <ListView
+                    android:id="@+id/MostrarCitaA"
+                    android:layout_width="350dp"
+                    android:layout_height="442dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/round_button"
+                    android:backgroundTint="@color/ListView" />
+
+                <TextView
+                    android:layout_width="170dp"
+                    android:layout_height="19dp"
+                    android:text="      Citas Pendientes:" />
+
+                <ListView
+                    android:id="@+id/MostrarCitaP"
+                    android:layout_width="350dp"
+                    android:layout_height="442dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/round_button"
+                    android:backgroundTint="@color/ListView" />
+
+
+                <Button
+                    android:id="@+id/BtnAgendarC"
+                    android:layout_width="320dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/round_button"
+                    android:backgroundTint="@color/boton_oscuro"
+                    android:onClick="AgendarC"
+                    android:text="Agendar Cita Medica"
+                    android:textSize="20dp" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="10dp" />
+
+            </LinearLayout>
+        </ScrollView>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -25,12 +25,15 @@ public class Register extends AppCompatActivity {
     private TextInputEditText Nombres;
     private TextInputEditText Apellidos;
     private TextInputEditText Usuario;
+    private TextInputEditText Edad;
+    private TextInputEditText Altura;
+    private TextInputEditText Peso;
     private TextInputEditText Ncedula;
     private TextInputEditText Correo;
     private TextInputEditText Clave;
 
     RequestQueue requestQueue;
-    private static final String URL = "http://192.168.1.106/prueba/Register.php";
+    private static final String URL = "http://192.168.31.54/Proyecto_PIS/Register.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,9 @@ public class Register extends AppCompatActivity {
         this.Nombres = findViewById(R.id.TxtNombres);
         this.Apellidos = findViewById(R.id.TxtApellidos);
         this.Usuario = findViewById(R.id.TxtUsuario);
+        this.Edad = findViewById(R.id.TxtEdad);
+        this.Altura = findViewById(R.id.TxtAltura);
+        this.Peso = findViewById(R.id.TxtPeso);
         this.Ncedula = findViewById(R.id.TxtNcedula);
         this.Correo = findViewById(R.id.TxtCorreo);
         this.Clave = findViewById(R.id.TxtClave);
@@ -55,11 +61,14 @@ public class Register extends AppCompatActivity {
             String nombres = Nombres.getText().toString().trim();
             String apellidos = Apellidos.getText().toString().trim();
             String usuario = Usuario.getText().toString().trim();
+            String edad = Edad.getText().toString().trim();
+            String altura = Altura.getText().toString().trim();
+            String peso = Peso.getText().toString().trim();
             String ncedula = Ncedula.getText().toString().trim();
             String correo = Correo.getText().toString().trim();
             String clave = Clave.getText().toString().trim();
 
-            CrearUsuario(nombres, apellidos, usuario, ncedula, correo, clave);
+            CrearUsuario(nombres, apellidos, usuario, edad, altura, peso, ncedula, correo, clave);
 
 
         }
@@ -67,7 +76,7 @@ public class Register extends AppCompatActivity {
 
     }
 
-    private void CrearUsuario(final String nombres, final String apellidos, final String usuario, final String ncedula, final String correo, final String clave) {
+    private void CrearUsuario(final String nombres, final String apellidos, final String usuario, final String edad, final String altura, final String peso, final String ncedula, final String correo, final String clave) {
 
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
@@ -97,6 +106,9 @@ public class Register extends AppCompatActivity {
                 params.put("nombres", nombres);
                 params.put("apellidos", apellidos);
                 params.put("usuario", usuario);
+                params.put("edad", edad);
+                params.put("altura", altura);
+                params.put("peso", peso);
                 params.put("ncedula", ncedula);
                 params.put("correo", correo);
                 params.put("clave", clave);

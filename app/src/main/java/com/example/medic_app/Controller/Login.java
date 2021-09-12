@@ -23,7 +23,6 @@ public class Login extends AppCompatActivity {
 
     private TextInputEditText correo;
     private TextInputEditText clave;
-
     RequestQueue requestQueue;
 
 
@@ -45,7 +44,7 @@ public class Login extends AppCompatActivity {
         if (view.getId() == R.id.BtnIniciar_L) {
 
 
-            String URL = "http://192.168.1.106/prueba/Login.php?correo=" + correo.getText().toString() + "&clave=" + clave.getText().toString();
+            String URL = "http://192.168.31.54/Proyecto_PIS/Login.php?correo=" + correo.getText().toString() + "&clave=" + clave.getText().toString();
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                     Request.Method.GET,
                     URL,
@@ -62,11 +61,14 @@ public class Login extends AppCompatActivity {
                                     Intent principal = new Intent(Login.this, Principal.class);
                                     startActivity(principal);
 
+
+
+
                                 } else {
                                     Toast.makeText(Login.this, "Credenciales Incorrectas", Toast.LENGTH_SHORT).show();
                                 }
                             } catch (JSONException e) {
-                                System.out.println(e);
+                                Toast.makeText(Login.this, "" + e, Toast.LENGTH_SHORT).show();
                             }
 
                         }
@@ -88,6 +90,8 @@ public class Login extends AppCompatActivity {
         }
 
     }
+
+
 
     public void Resgistrar(View view) {
         Intent registrar = new Intent(Login.this, Register.class);

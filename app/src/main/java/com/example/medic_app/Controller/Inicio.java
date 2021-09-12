@@ -7,8 +7,23 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.medic_app.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,8 +41,11 @@ public class Inicio extends Fragment {
     private String mParam1;
     private String mParam2;
 
+
     public Inicio() {
         // Required empty public constructor
+
+
     }
 
     /**
@@ -46,6 +64,7 @@ public class Inicio extends Fragment {
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+
     }
 
     @Override
@@ -55,12 +74,66 @@ public class Inicio extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_inicio, container, false);
+
+        ArrayAdapter<String> lisAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1);
+
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+
+        String url = "http://192.168.31.54/Proyecto_PIS/ConsultaMedicamentos.php?idusuarios=1";
+        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+
+                            if (response != null) {
+
+                                lisAdapter.add("Medicamentos a Consumir:");
+                                lisAdapter.add("====================================");
+
+                                for (int x = response.length(); x <= response.length(); x++) {
+                                    lisAdapter.add("Nombre: " + response.getString("nmedicamento"));
+                                    lisAdapter.add("Dosis: " + response.getString("dosis"));
+                                    lisAdapter.add("Intervalo de Horas: " + response.getString("intervalohoras"));
+                                    lisAdapter.add("====================================");
+                                }
+
+                            } else {
+
+                                lisAdapter.add("Aun no tiene datos en el Sistema");
+
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        queue.add(stringRequest);
+
+        View view = inflater.inflate(R.layout.fragment_inicio, container, false);
+        ListView listView = (ListView) view.findViewById(R.id.MostrarM);
+        listView.setAdapter(lisAdapter);
+
+        return view;
+
     }
+
 }

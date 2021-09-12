@@ -7,8 +7,19 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.medic_app.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,7 +71,108 @@ public class CitasM extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_citas_m, container, false);
+
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+
+        ArrayAdapter<String> lisAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1);
+        ArrayAdapter<String> lisAdapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1);
+
+
+
+        String url = "http://192.168.31.54/Proyecto_PIS/ConsultaCitasA.php?idusuarios=1";
+        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+
+                            if (response != null) {
+                                lisAdapter.add("====================================");
+                                for(int x=response.length(); x<=response.length();x++){
+                                    lisAdapter.add("Institucion: "+response.getString("institucion"));
+                                    lisAdapter.add("Fecha: "+response.getString("fecha"));
+                                    lisAdapter.add("Direccion: "+response.getString("direccion"));
+                                    lisAdapter.add("Doctor: "+response.getString("usuariod"));
+                                    lisAdapter.add("Correo: "+response.getString("correod"));
+                                    lisAdapter.add("Paciente: "+response.getString("usuario"));
+                                    lisAdapter.add("Correo: "+response.getString("usuario"));
+                                    lisAdapter.add("====================================");
+                                }
+
+                            } else {
+
+                                lisAdapter.add("Aun no tiene datos en el Sistema");
+
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        queue.add(stringRequest);
+
+        String url1 = "http://192.168.31.54/Proyecto_PIS/ConsultaCitasP.php?idusuarios=1";
+        JsonObjectRequest stringRequest1 = new JsonObjectRequest(Request.Method.GET, url1, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+
+                            if (response != null) {
+                                lisAdapter1.add("====================================");
+                                for(int x=response.length(); x<=response.length();x++){
+                                    lisAdapter1.add("Institucion: "+response.getString("institucion"));
+                                    lisAdapter1.add("Fecha: "+response.getString("fecha"));
+                                    lisAdapter1.add("Direccion: "+response.getString("direccion"));
+                                    lisAdapter1.add("Doctor: "+response.getString("usuariod"));
+                                    lisAdapter1.add("Correo: "+response.getString("correod"));
+                                    lisAdapter1.add("Paciente: "+response.getString("usuario"));
+                                    lisAdapter1.add("Correo: "+response.getString("usuario"));
+                                    lisAdapter1.add("====================================");
+                                }
+
+                            } else {
+
+                                lisAdapter1.add("Aun no tiene datos en el Sistema");
+
+                            }
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        queue.add(stringRequest1);
+
+
+        View view = inflater.inflate(R.layout.fragment_citas_m, container, false);
+
+        ListView listView = (ListView) view.findViewById(R.id.MostrarCitaA);
+        listView.setAdapter(lisAdapter);
+
+        ListView listView1 = (ListView) view.findViewById(R.id.MostrarCitaP);
+        listView1.setAdapter(lisAdapter1);
+
+        return view;
     }
 }

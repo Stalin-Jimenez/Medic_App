@@ -1,14 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Controller.Inicio">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Inicio" />
+        android:orientation="vertical">
 
-</FrameLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:text="Lista de Medicamentos"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+
+
+                <ListView
+                    android:id="@+id/MostrarM"
+                    android:layout_width="350dp"
+                    android:layout_height="400dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/round_button"
+                    android:backgroundTint="@color/ListView" />
+
+
+                <Button
+                    android:id="@+id/BtnNotificar"
+                    android:layout_width="320dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/round_button"
+                    android:backgroundTint="@color/acento"
+                    android:onClick="Notificar"
+                    android:text="Notificarme"
+                    android:textSize="20dp" />
+
+                <Button
+                    android:id="@+id/BtnEliminarN"
+                    android:layout_width="320dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/round_button"
+                    android:backgroundTint="@color/boton_oscuro"
+                    android:onClick="EliminarN"
+                    android:text="Eliminar Notificaciones"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</RelativeLayout>
